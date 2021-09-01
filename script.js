@@ -25,9 +25,6 @@ var Character = /** @class */ (function () {
         this.health = health;
         this.experience = experience;
     }
-    Character.prototype.attack = function (defender) {
-        defender.health -= this.damage;
-    };
     return Character;
 }());
 var Warrior = /** @class */ (function (_super) {
@@ -37,6 +34,10 @@ var Warrior = /** @class */ (function (_super) {
         _this.adrenalineScale = adrenalineScale;
         return _this;
     }
+    Warrior.prototype.attack = function (defender) {
+        defender.health -= this.damage;
+        attacker.adrenalineScale += 10;
+    };
     return Warrior;
 }(Character));
 var Archer = /** @class */ (function (_super) {
@@ -46,6 +47,10 @@ var Archer = /** @class */ (function (_super) {
         _this.adrenalineScale = adrenalineScale;
         return _this;
     }
+    Archer.prototype.attack = function (defender) {
+        defender.health -= this.damage;
+        attacker.adrenalineScale += 10;
+    };
     return Archer;
 }(Character));
 var Magician = /** @class */ (function (_super) {
@@ -64,9 +69,15 @@ var Magician = /** @class */ (function (_super) {
         }
         return this.mana = maxMana;
     };
+    Magician.prototype.attack = function (defender) {
+        defender.health -= this.damage;
+    };
     return Magician;
 }(Character));
-var mag = new Magician(1, 1, 5, 1, 1, 1, 50);
-// const warrior = new Warrior(2, 2, 2, 2, 2, 2, 50);
-console.log(mag);
-console.log(mag.maxReserveMana()); //50 'Достигнут макисмальный запас магии.'
+var warrior = new Warrior(1, 1, 1, 1, 1, 1, 1);
+var archer = new Archer(2, 2, 2, 2, 2, 2, 2);
+var mag = new Magician(3, 3, 5, 3, 3, 3, 50);
+var attacker = archer;
+var defender = warrior;
+console.log('Лучник атакует воина:', archer.attack(warrior));
+console.log('Воин после атаки:', warrior);

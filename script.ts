@@ -96,10 +96,18 @@ class Magician extends Character {
         }
         return this.mana = maxMana;
     }
+
+    attack(defender: Warrior | Archer | Magician): void {
+        defender.health -= this.damage;
+    }
 }
 
-const mag = new Magician(1, 1, 5, 1, 1, 1, 50);
-let attacker = new Warrior(2, 2, 2, 2, 2, 2, 50);
+const warrior = new Warrior(1, 1, 1, 1, 1, 1, 1);
+const archer = new Archer(2, 2, 2, 2, 2, 2, 2);
+const mag = new Magician(3, 3, 5, 3, 3, 3, 50);
 
-console.log(mag);
-console.log(mag.maxReserveMana()); //50 'Достигнут макисмальный запас магии.'
+let attacker = archer;
+let defender = warrior;
+
+console.log('Лучник атакует воина:', archer.attack(warrior));
+console.log('Воин после атаки:', warrior);
