@@ -26,12 +26,6 @@ class Character {
         this.experience = experience;
     }
 
-    attack(defender: Character, attacker: Character): void {
-        defender.health -= this.damage;
-        if (attacker.adrenalineScale) {
-            attacker.adrenalineScale += 10;
-        }
-    }
 }
 
 class Warrior extends Character {
@@ -49,6 +43,11 @@ class Warrior extends Character {
         super(force, dexterity, intelligence, damage, health, experience)
         this.adrenalineScale = adrenalineScale;
     }
+
+    attack(defender: Warrior | Archer | Magician): void {
+        defender.health -= this.damage;
+        attacker.adrenalineScale += 10;
+    }
 }
 
 class Archer extends Character {
@@ -64,6 +63,11 @@ class Archer extends Character {
     ) {
         super(force, dexterity, intelligence, damage, health, experience)
         this.adrenalineScale = adrenalineScale;
+    }
+
+    attack(defender: Warrior | Archer | Magician): void {
+        defender.health -= this.damage;
+        attacker.adrenalineScale += 10;
     }
 }
 
