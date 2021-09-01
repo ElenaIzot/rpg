@@ -44,7 +44,7 @@ class Warrior extends Character {
         this.adrenalineScale = adrenalineScale;
     }
 
-    attack(defender: Warrior | Archer | Magician): void {
+    attack(defender: Archer | Magician): void {
         defender.health -= this.damage;
         attacker.adrenalineScale += 10;
     }
@@ -65,7 +65,7 @@ class Archer extends Character {
         this.adrenalineScale = adrenalineScale;
     }
 
-    attack(defender: Warrior | Archer | Magician): void {
+    attack(defender: Warrior | Magician): void {
         defender.health -= this.damage;
         attacker.adrenalineScale += 10;
     }
@@ -97,7 +97,7 @@ class Magician extends Character {
         return this.mana = maxMana;
     }
 
-    attack(defender: Warrior | Archer | Magician): void {
+    attack(defender: Warrior | Archer ): void {
         defender.health -= this.damage;
     }
 }
