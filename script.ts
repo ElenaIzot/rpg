@@ -1,14 +1,10 @@
-// опиши систему классов для RPG игры, в которой: есть маг, воин и лучник.У каждого есть сила, ловкость, 
-// интелект, наносимый урон, здоровье и опыт.У воина и лучника есть шакала адреналина(0 - 100), а у мага мана.
-// Каждый персонаж может атаковать другого персонажа, при этом у воина и лучника при атаке накапливается
-
 class Character {
-    force: number;
-    dexterity: number;
-    intelligence: number;
-    damage: number;
-    health: number;
-    experience: number;
+    public force: number;
+    public dexterity: number;
+    public intelligence: number;
+    public damage: number;
+    public  health: number;
+    public  experience: number;
 
     constructor(
         force: number,
@@ -29,7 +25,7 @@ class Character {
 }
 
 class Warrior extends Character {
-    adrenalineScale: number;
+    public _adrenaline: number;
 
     constructor(
         force: number,
@@ -38,20 +34,26 @@ class Warrior extends Character {
         damage: number,
         health: number,
         experience: number,
-        adrenalineScale: number
+        _adrenaline: number
     ) {
         super(force, dexterity, intelligence, damage, health, experience)
-        this.adrenalineScale = adrenalineScale;
+        this._adrenaline = _adrenaline;
     }
 
-    attack(defender: Archer | Magician): void {
+    set adrenaline(value: number) {
+        if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+            this._adrenaline = value;
+        }
+    }
+
+    attack(defender: Character): void {
         defender.health -= this.damage;
-        attacker.adrenalineScale += 10;
+        this._adrenaline += 10;
     }
 }
 
 class Archer extends Character {
-    adrenalineScale: number;
+    public _adrenaline: number;
 
     constructor(force: number,
         dexterity: number,
@@ -59,21 +61,27 @@ class Archer extends Character {
         damage: number,
         health: number,
         experience: number,
-        adrenalineScale: number
+        _adrenaline: number
     ) {
         super(force, dexterity, intelligence, damage, health, experience)
-        this.adrenalineScale = adrenalineScale;
+        this._adrenaline = _adrenaline;
     }
 
-    attack(defender: Warrior | Magician): void {
+    set adrenaline(value: number) {
+        if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+            this._adrenaline = value;
+        }
+    }
+
+    attack(defender: Character): void {
         defender.health -= this.damage;
-        attacker.adrenalineScale += 10;
+        this._adrenaline += 10;
     }
 }
 
 
 class Magician extends Character {
-    mana: number;
+    public mana: number;
 
     constructor(force: number,
         dexterity: number,
@@ -97,7 +105,7 @@ class Magician extends Character {
         return this.mana = maxMana;
     }
 
-    attack(defender: Warrior | Archer ): void {
+    attack(defender: Character): void {
         defender.health -= this.damage;
     }
 }

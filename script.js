@@ -1,6 +1,3 @@
-// опиши систему классов для RPG игры, в которой: есть маг, воин и лучник.У каждого есть сила, ловкость, 
-// интелект, наносимый урон, здоровье и опыт.У воина и лучника есть шакала адреналина(0 - 100), а у мага мана.
-// Каждый персонаж может атаковать другого персонажа, при этом у воина и лучника при атаке накапливается
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -29,27 +26,45 @@ var Character = /** @class */ (function () {
 }());
 var Warrior = /** @class */ (function (_super) {
     __extends(Warrior, _super);
-    function Warrior(force, dexterity, intelligence, damage, health, experience, adrenalineScale) {
+    function Warrior(force, dexterity, intelligence, damage, health, experience, _adrenaline) {
         var _this = _super.call(this, force, dexterity, intelligence, damage, health, experience) || this;
-        _this.adrenalineScale = adrenalineScale;
+        _this._adrenaline = _adrenaline;
         return _this;
     }
+    Object.defineProperty(Warrior.prototype, "adrenaline", {
+        set: function (value) {
+            if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+                this._adrenaline = value;
+            }
+        },
+        enumerable: false,
+        configurable: true
+    });
     Warrior.prototype.attack = function (defender) {
         defender.health -= this.damage;
-        attacker.adrenalineScale += 10;
+        this._adrenaline += 10;
     };
     return Warrior;
 }(Character));
 var Archer = /** @class */ (function (_super) {
     __extends(Archer, _super);
-    function Archer(force, dexterity, intelligence, damage, health, experience, adrenalineScale) {
+    function Archer(force, dexterity, intelligence, damage, health, experience, _adrenaline) {
         var _this = _super.call(this, force, dexterity, intelligence, damage, health, experience) || this;
-        _this.adrenalineScale = adrenalineScale;
+        _this._adrenaline = _adrenaline;
         return _this;
     }
+    Object.defineProperty(Archer.prototype, "adrenaline", {
+        set: function (value) {
+            if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+                this._adrenaline = value;
+            }
+        },
+        enumerable: false,
+        configurable: true
+    });
     Archer.prototype.attack = function (defender) {
         defender.health -= this.damage;
-        attacker.adrenalineScale += 10;
+        this._adrenaline += 10;
     };
     return Archer;
 }(Character));
