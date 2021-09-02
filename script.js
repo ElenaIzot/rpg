@@ -33,7 +33,7 @@ var Warrior = /** @class */ (function (_super) {
     }
     Object.defineProperty(Warrior.prototype, "adrenaline", {
         set: function (value) {
-            if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+            if (value >= 0 && value <= 100) {
                 this._adrenaline = value;
             }
         },
@@ -55,7 +55,7 @@ var Archer = /** @class */ (function (_super) {
     }
     Object.defineProperty(Archer.prototype, "adrenaline", {
         set: function (value) {
-            if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+            if (value >= 0 && value <= 100) {
                 this._adrenaline = value;
             }
         },

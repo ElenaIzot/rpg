@@ -3,8 +3,8 @@ class Character {
     public dexterity: number;
     public intelligence: number;
     public damage: number;
-    public  health: number;
-    public  experience: number;
+    public health: number;
+    public experience: number;
 
     constructor(
         force: number,
@@ -41,7 +41,7 @@ class Warrior extends Character {
     }
 
     set adrenaline(value: number) {
-        if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+        if (value >= 0 && value <= 100) {
             this._adrenaline = value;
         }
     }
@@ -68,7 +68,7 @@ class Archer extends Character {
     }
 
     set adrenaline(value: number) {
-        if (this._adrenaline >= 0 && this._adrenaline <= 100) {
+        if (value >= 0 && value <= 100) {
             this._adrenaline = value;
         }
     }
