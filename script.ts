@@ -40,15 +40,19 @@ class Warrior extends Character {
         this._adrenaline = _adrenaline;
     }
 
+    get adrenaline(): number {
+        return this._adrenaline;
+    }
+
     set adrenaline(value: number) {
         if (value >= 0 && value <= 100) {
-            this._adrenaline = value;
+            this._adrenaline += value;
         }
     }
 
     attack(defender: Character): void {
         defender.health -= this.damage;
-        this._adrenaline += 10;
+        this.adrenaline = 10;
     }
 }
 
@@ -67,15 +71,19 @@ class Archer extends Character {
         this._adrenaline = _adrenaline;
     }
 
+    get adrenaline(): number {
+        return this._adrenaline;
+    }
+
     set adrenaline(value: number) {
-        if (value >= 0 && value <= 100) {
-            this._adrenaline = value;
+        if (value >= 0 || value <= 100) {
+            this._adrenaline += value;
         }
     }
 
     attack(defender: Character): void {
         defender.health -= this.damage;
-        this._adrenaline += 10;
+        this.adrenaline = 10;
     }
 }
 
@@ -117,5 +125,10 @@ const mag = new Magician(3, 3, 5, 3, 3, 3, 50);
 let attacker = archer;
 let defender = warrior;
 
-console.log('Лучник атакует воина:', archer.attack(warrior));
-console.log('Воин после атаки:', warrior);
+const archer2 = new Archer(2, 2, 2, 2, 2, 2, 2);
+console.log('archer2:', archer2);
+archer2.attack(mag);
+
+console.log('archer2 после атаки', archer2);
+
+

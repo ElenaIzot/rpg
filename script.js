@@ -32,9 +32,12 @@ var Warrior = /** @class */ (function (_super) {
         return _this;
     }
     Object.defineProperty(Warrior.prototype, "adrenaline", {
+        get: function () {
+            return this._adrenaline;
+        },
         set: function (value) {
             if (value >= 0 && value <= 100) {
-                this._adrenaline = value;
+                this._adrenaline += value;
             }
         },
         enumerable: false,
@@ -42,7 +45,7 @@ var Warrior = /** @class */ (function (_super) {
     });
     Warrior.prototype.attack = function (defender) {
         defender.health -= this.damage;
-        this._adrenaline += 10;
+        this.adrenaline = 10;
     };
     return Warrior;
 }(Character));
@@ -54,9 +57,12 @@ var Archer = /** @class */ (function (_super) {
         return _this;
     }
     Object.defineProperty(Archer.prototype, "adrenaline", {
+        get: function () {
+            return this._adrenaline;
+        },
         set: function (value) {
-            if (value >= 0 && value <= 100) {
-                this._adrenaline = value;
+            if (value >= 0 || value <= 100) {
+                this._adrenaline += value;
             }
         },
         enumerable: false,
@@ -64,7 +70,7 @@ var Archer = /** @class */ (function (_super) {
     });
     Archer.prototype.attack = function (defender) {
         defender.health -= this.damage;
-        this._adrenaline += 10;
+        this.adrenaline = 10;
     };
     return Archer;
 }(Character));
@@ -94,5 +100,7 @@ var archer = new Archer(2, 2, 2, 2, 2, 2, 2);
 var mag = new Magician(3, 3, 5, 3, 3, 3, 50);
 var attacker = archer;
 var defender = warrior;
-console.log('Лучник атакует воина:', archer.attack(warrior));
-console.log('Воин после атаки:', warrior);
+var archer2 = new Archer(2, 2, 2, 2, 2, 2, 2);
+console.log('archer2:', archer2);
+archer2.attack(mag);
+console.log('archer2 после атаки', archer2);
